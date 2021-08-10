@@ -21,6 +21,7 @@ import {
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
 import Link from "next/link"
 import TwitterIcon from "@material-ui/icons/Twitter"
+import { useState } from "react"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,7 +43,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Login() {
+function Login() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [session, loading] = useSession()
 
   console.log(session)
@@ -50,13 +53,15 @@ export default function Login() {
   const classes = useStyles()
 
   const submitHandler = async (e) => {
-    // e.preventDefault()
+    e.preventDefault()
+
+    // console.log(email, password)
     // setLoading(true)
-    // const res = await signIn("credentials", {
-    //   redirect: false,
-    //   email,
-    //   password,
-    // })
+    const res = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    })
     // dispatch(loadUser())
     // setLoading(false)
     // if (res.error) {
@@ -97,8 +102,8 @@ export default function Login() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 variant="outlined"
@@ -109,8 +114,8 @@ export default function Login() {
                 label="Password"
                 type="password"
                 id="password"
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
               />
               {/* <FormControlLabel
@@ -171,3 +176,5 @@ export default function Login() {
     </Container>
   )
 }
+
+export default Login

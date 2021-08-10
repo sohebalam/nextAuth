@@ -75,7 +75,7 @@ const SignIn = () => {
 
   const [session] = useSession()
 
-  console.log(session)
+  // console.log(session)
 
   if (session) {
     const { user } = session

@@ -1,8 +1,8 @@
 import NextAuth from "next-auth"
 import Providers from "next-auth/providers"
 import bcrypt from "bcryptjs"
-// import User from "../../../models/userModel"
-// import connectDB from "../../../connectDB"
+import User from "../../../models/userModel"
+import connectDB from "../../../connectDB"
 
 export default NextAuth({
   session: {
@@ -35,6 +35,8 @@ export default NextAuth({
         connectDB()
 
         const { email, password } = credentials
+
+        console.log(credentials)
 
         // Check if email and password is entered
         if (!email || !password) {

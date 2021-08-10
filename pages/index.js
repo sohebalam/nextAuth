@@ -12,7 +12,7 @@ import {
 export default function Home() {
   const [session, loading] = useSession()
 
-  console.log(session)
+  // console.log(session)
 
   return (
     <div className={styles.container}>
