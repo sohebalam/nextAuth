@@ -1,0 +1,9 @@
+npm i next-auth axios
+
+npm i @material-ui/icons @material-ui/lab @material-ui/core
+
+
+npm i redux react-redux redux-thunk next-redux-wrapper
+
+
+npm i mongoose bcryptjs next-connect validator
