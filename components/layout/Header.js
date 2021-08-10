@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
   const [session] = useSession()
 
+  // console.log(session)
+
   const handleSignin = (e) => {
     e.preventDefault()
     signIn()

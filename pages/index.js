@@ -1,10 +1,18 @@
 import Head from "next/head"
-import Header from "../components/Header"
+// import Header from "../components/Header"
 import styles from "../styles/Home.module.css"
-import { useSession } from "next-auth/client"
+import { signIn, useSession } from "next-auth/client"
+import {
+  GoogleLoginButton,
+  GithubLoginButton,
+  TwitterLoginButton,
+  LinkedInLoginButton,
+} from "react-social-login-buttons"
 
 export default function Home() {
   const [session, loading] = useSession()
+
+  console.log(session)
 
   return (
     <div className={styles.container}>
@@ -12,7 +20,7 @@ export default function Home() {
         <title>Nextjs | Next-Auth</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      {/* <Header /> */}
       <main className={styles.main}>
         <h1 className={styles.title}>
           Authentication in Next.js app using Next-Auth
@@ -47,6 +55,7 @@ export default function Home() {
             </>
           )}
         </div>
+        <GoogleLoginButton onClick={() => signIn("google")} />
       </main>
     </div>
   )
