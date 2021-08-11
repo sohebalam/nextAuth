@@ -36,7 +36,7 @@ export default NextAuth({
 
         const { email, password } = credentials
 
-        console.log(credentials)
+        // console.log(credentials)
 
         // Check if email and password is entered
         if (!email || !password) {

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Header() {
+function Header() {
   const [session] = useSession()
 
   // console.log(session)
@@ -107,3 +107,5 @@ export default function Header() {
     </AppBar>
   )
 }
+
+export default Header
