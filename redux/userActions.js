@@ -91,6 +91,7 @@ export const updateProfile = (userData) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     }
+
     const { data } = await axios.put(`/api/profile/update`, userData, config)
 
     dispatch({
@@ -121,7 +122,6 @@ export const passwordForgot = (userData) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     }
-
     const { data } = await axios.post(`/api/auth/forgot`, userData, config)
 
     dispatch({
@@ -140,6 +140,8 @@ export const passwordForgot = (userData) => async (dispatch) => {
 }
 
 export const passwordReset = (userData, resetToken) => async (dispatch) => {
+  // console.log(userData)
+  // return
   try {
     dispatch({ type: RESET_PASSWORD_REQUEST })
 

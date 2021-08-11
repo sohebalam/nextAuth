@@ -82,7 +82,7 @@ const Reset = () => {
       password,
       conPassword,
     }
-    // console.log(userData)
+    // console.log(userData, token)
     // return
     dispatch(passwordReset(userData, token))
   }

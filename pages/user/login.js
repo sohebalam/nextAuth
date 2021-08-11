@@ -25,6 +25,7 @@ import { useState } from "react"
 import { loadUser, socialReg } from "../../redux/userActions"
 import { useDispatch, useSelector } from "react-redux"
 import { useRouter } from "next/router"
+import { Alert } from "@material-ui/lab"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,6 +52,7 @@ function Login() {
   const [password, setPassword] = useState("")
   const [session] = useSession()
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
   const dispatch = useDispatch()
   const router = useRouter()
 
@@ -120,7 +122,7 @@ function Login() {
               Sign in
             </Typography>
             {/* {error && <Alert severity="error">{error}</Alert>} */}
-            {/* {error && <Alert severity="error">{error}</Alert>} */}
+            {error && <Alert severity="error">{error}</Alert>}
             <form className={classes.form} noValidate onSubmit={submitHandler}>
               <TextField
                 variant="outlined"
