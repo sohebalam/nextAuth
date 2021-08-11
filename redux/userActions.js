@@ -94,14 +94,16 @@ export const updateProfile = (userData) => async (dispatch) => {
 
     const { data } = await axios.put(`/api/profile/update`, userData, config)
 
+    // console.log(data)
+
     dispatch({
       type: UPDATE_PROFILE_SUCCESS,
       payload: data.success,
     })
-    dispatch({
-      type: UPDATE_PROFILE_RESET,
-      payload: null,
-    })
+    // dispatch({
+    //   type: UPDATE_PROFILE_RESET,
+    //   payload: null,
+    // })
   } catch (error) {
     dispatch({
       type: UPDATE_PROFILE_FAIL,

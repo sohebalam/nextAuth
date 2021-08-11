@@ -83,15 +83,15 @@ export const updateProfile = async (req, res) => {
     }
     if (user.email) {
       const { email } = user
-      const userExists = await User.findOne({ email })
+      //   const userExists = await User.findOne({ email })
 
-      if (userExists) {
-        return res.status(400).json({ message: "email already exists" })
-      }
-    } else {
-      if (!validator.isEmail) {
-        return res.status(400).json({ message: "Not a valid email" })
-      }
+      //   if (userExists) {
+      //     res.status(400).json({ message: "email already exists" })
+      //   }
+      // } else {
+      //   if (!validator.isEmail) {
+      //     return res.status(400).json({ message: "Not a valid email" })
+      //   }
       user.email = req.body.email
     }
     await user.save()
@@ -114,15 +114,15 @@ export const updateProfile = async (req, res) => {
     }
     if (user.email) {
       const { email } = user
-      const userExists = await User.findOne({ email })
+      //   const userExists = await User.findOne({ email })
 
-      if (userExists) {
-        return res.status(400).json({ message: "email already exists" })
-      }
-    } else {
-      if (!validator.isEmail) {
-        return res.status(400).json({ message: "Not a valid email" })
-      }
+      //   if (userExists) {
+      //     res.status(400).json({ message: "email already exists" })
+      //   }
+      // } else {
+      //   if (!validator.isEmail) {
+      //     return res.status(400).json({ message: "Not a valid email" })
+      //   }
       user.email = req.body.email
     }
     await user.save()

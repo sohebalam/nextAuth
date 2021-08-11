@@ -16,11 +16,10 @@ import React, { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import { CircularProgress } from "@material-ui/core"
 import { useDispatch, useSelector } from "react-redux"
-import { updateProfile, clearErrors } from "../../redux/userActions"
+import { updateProfile, clearErrors, loadUser } from "../../redux/userActions"
 import { UPDATE_PROFILE_RESET } from "../../redux/userTypes"
 import { getSession } from "next-auth/client"
 
-import { signOut } from "next-auth/client"
 import { Box } from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
@@ -70,24 +69,7 @@ const Profile = () => {
     loading: updateLoading,
   } = useSelector((state) => state.update)
 
-  useEffect(() => {
-    if (dbUser) {
-      setUser({
-        name: dbUser.name,
-        email: dbUser.email,
-      })
-    }
-
-    if (error) {
-      console.log(error)
-      // dispatch(clearErrors())
-    }
-
-    if (isUpdated) {
-      router.push("/")
-      dispatch({ type: UPDATE_PROFILE_RESET })
-    }
-  }, [dispatch, isUpdated, dbUser, error])
+  // console.log(isUpdated)
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -105,6 +87,28 @@ const Profile = () => {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
   const { name, email, password } = user
+
+  useEffect(() => {
+    if (dbUser) {
+      setUser({
+        name: dbUser.name,
+        email: dbUser.email,
+      })
+    }
+
+    if (error) {
+      console.log(error)
+      // dispatch(clearErrors())
+    }
+
+    if (isUpdated) {
+      // router.push("/")
+      dispatch(loadUser())
+      dispatch({ type: UPDATE_PROFILE_RESET })
+      // dispatch({ type: loadUser })
+    }
+  }, [dispatch, isUpdated, dbUser, error, setUser])
+
   return (
     <>
       {loading ? (
