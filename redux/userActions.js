@@ -183,7 +183,7 @@ export const socialReg = (userData) => async (dispatch) => {
     }
 
     const { data } = await axios.post(`/api/auth/social`, userData, config)
-    console.log(data)
+    // console.log(data)
     dispatch({
       type: SOCIAL_REG_SUCCESS,
       payload: data,

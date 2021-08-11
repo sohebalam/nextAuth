@@ -43,7 +43,7 @@ function Header() {
   const profile = useSelector((state) => state.profile)
   const { loading, error, dbUser } = profile
 
-  console.log(dbUser)
+  // console.log(dbUser)
 
   useEffect(() => {
     if (!dbUser) {
@@ -88,7 +88,7 @@ function Header() {
               >
                 <Typography style={{ marginTop: "0.25rem" }}>
                   {" "}
-                  {/* Hello {dbUser.name} */}
+                  Hello {dbUser.name}
                   {/* {dbUser.lastName} */}
                 </Typography>
               </div>

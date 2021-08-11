@@ -22,6 +22,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
 import Link from "next/link"
 import TwitterIcon from "@material-ui/icons/Twitter"
 import { useState } from "react"
+import { loadUser, socialReg } from "../../redux/userActions"
+import { useDispatch, useSelector } from "react-redux"
+import { useRouter } from "next/router"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,9 +49,18 @@ const useStyles = makeStyles((theme) => ({
 function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [session, loading] = useSession()
+  const [session] = useSession()
+  const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+  const router = useRouter()
 
   console.log(session)
+
+  const profile = useSelector((state) => state.profile)
+
+  const { dbUser } = profile
+
+  // console.log(dbUser)
 
   const classes = useStyles()
 
@@ -62,14 +74,32 @@ function Login() {
       email,
       password,
     })
-    // dispatch(loadUser())
-    // setLoading(false)
-    // if (res.error) {
-    //   setError(res.error)
-    //   setLoading(false)
-    // } else {
-    //   router.push("/")
-    // }
+    dispatch(loadUser())
+    setLoading(false)
+    if (res.error) {
+      setError(res.error)
+      setLoading(false)
+    } else {
+      router.push("/")
+    }
+  }
+
+  if (session) {
+    const { user } = session
+    // console.log(user)
+
+    const userData = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: null,
+    }
+    if (!dbUser) {
+      if (user.id) {
+        dispatch(socialReg(userData))
+        console.log(userData)
+      }
+    }
   }
 
   return (
